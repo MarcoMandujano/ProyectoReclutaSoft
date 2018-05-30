@@ -14,7 +14,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import mx.uacm.reclutaSoft.constantes.Error;
 import mx.uacm.reclutaSoft.domain.Habilidad;
 import mx.uacm.reclutaSoft.excepcion.AppExcepcion;
-import mx.uacm.reclutaSoft.service.HabilidadService;
 import mx.uacm.reclutaSoft.service.UsuarioService;
 import mx.uacm.reclutasoftw.Application;
 
@@ -22,9 +21,6 @@ import mx.uacm.reclutasoftw.Application;
 @SpringBootTest(classes=Application.class)
 public class UsuarioServiceImplTest {
 	private static final Logger log = LogManager.getLogger(UsuarioServiceImplTest.class);
-	
-	@Autowired
-	private HabilidadService habilidadService;
 	
 	@Autowired
 	private UsuarioService usuarioService;

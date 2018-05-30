@@ -1,4 +1,4 @@
-package mx.uacm.reclutaSoft.service.test.impl;
+package mx.uacm.reclutaSoft.service.impl;
 
 import java.util.ArrayList;
 
