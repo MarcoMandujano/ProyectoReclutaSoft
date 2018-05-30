@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import mx.uacm.reclutaSoft.constantes.Regla;
 import mx.uacm.reclutaSoft.constantes.Error;
@@ -14,6 +15,7 @@ import mx.uacm.reclutaSoft.excepcion.AppExcepcion;
 import mx.uacm.reclutaSoft.persistence.UsuarioRepository;
 import mx.uacm.reclutaSoft.service.UsuarioService;
 
+@Service
 public class UsuarioServiceImpl implements UsuarioService {
 	
 	private static final Logger log = LogManager.getLogger(UsuarioServiceImpl.class);
@@ -64,7 +66,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 			throw new AppExcepcion(Error.MAL_TELEFONO, Error.NO_NUMEROS);
 		}
 		
-		if (telefono.length() == Regla.LONG_TELEFONO) {
+		if (telefono.length() != Regla.LONG_TELEFONO) {
 			throw new AppExcepcion(Error.MAL_TELEFONO, Error.NO_LONGITUD);
 		}
 		
