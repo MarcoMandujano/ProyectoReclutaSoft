@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import mx.uacm.reclutaSoft.constantes.Regla;
 import mx.uacm.reclutaSoft.constantes.Error;
 import mx.uacm.reclutaSoft.domain.Habilidad;
+import mx.uacm.reclutaSoft.domain.Proyecto;
 import mx.uacm.reclutaSoft.domain.Usuario;
 import mx.uacm.reclutaSoft.excepcion.AppExcepcion;
 import mx.uacm.reclutaSoft.persistence.UsuarioRepository;
@@ -99,6 +100,49 @@ public class UsuarioServiceImpl implements UsuarioService {
 		usuario.setTitulo(titulo);
 		
 		//usuarioRepository.save(usuario);		
+		return usuario;
+	}
+	
+	public Usuario setReputacion(Usuario usuario, int reputacion) throws AppExcepcion {	
+		log.debug("Entrando a setReputacion");
+				
+		if (reputacion < Regla.MIN_REPUTACION || reputacion > Regla.MAX_REPUTACION) {
+			throw new AppExcepcion(Error.MAL_REPUTACION, Error.NO_RANGO);
+		}
+		
+		//usuario = usuarioRepository
+		usuario.setReputacion(reputacion);
+		return usuario;
+	}
+	
+	public Usuario setPartcicipacion(Usuario usuario, Proyecto proyecto) throws AppExcepcion {
+		log.debug("Entrando a setPartcicipacion");
+		
+		return usuario;
+	}
+	
+	public Usuario findUsuario(String correo) throws AppExcepcion {
+		log.debug("Entrando a findUsuario");
+		
+		//Usuario usuario = usuarioRepository.find
+		
+		ArrayList<Habilidad> habilidades = new ArrayList<Habilidad>();
+		String nomHabilidad = "C";
+		String tipo = "Lenguaje de progrmación";		
+		int puntuacion = 5;
+		
+		Usuario usuario = new Usuario();
+		usuario.setNombre("Marco");
+		usuario.setApellidoPaterno("Mandujano");
+		usuario.setApellidoMaterno("Hernandez");
+		usuario.setCorreo(correo);
+		usuario.setContrasenia("qwerty123");
+		usuario.setTelefono("1547896358");
+		usuario.setHabilidades(habilidades);
+		usuario.setEdad(18);
+		usuario.setWeb("http://marcoWeb.com/info");
+		usuario.setTitulo("Estudiante");
+		
 		return usuario;
 	}
 }

@@ -41,6 +41,10 @@ public class HabilidadServiceImpl implements HabilidadService {
 			throw new AppExcepcion(Error.MAL_PT_HABILIDAD, Error.NO_RANGO);
 		}
 		
+		habilidad = new Habilidad();
+		habilidad.setNombre(nombre);
+		habilidad.setTipo(tipo);
+		habilidad.setPuntuacion(puntuacion);
 		//habilidadRepository.save(habilidad);
 		
 		return habilidad;

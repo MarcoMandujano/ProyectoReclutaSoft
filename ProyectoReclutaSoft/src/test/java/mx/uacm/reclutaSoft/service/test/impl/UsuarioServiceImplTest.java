@@ -16,6 +16,7 @@ import mx.uacm.reclutaSoft.constantes.Regla;
 import mx.uacm.reclutaSoft.domain.Habilidad;
 import mx.uacm.reclutaSoft.domain.Usuario;
 import mx.uacm.reclutaSoft.excepcion.AppExcepcion;
+import mx.uacm.reclutaSoft.service.HabilidadService;
 import mx.uacm.reclutaSoft.service.UsuarioService;
 import mx.uacm.reclutasoftw.Application;
 
@@ -30,8 +31,8 @@ public class UsuarioServiceImplTest {
 //	@Autowired
 //	private UsuarioService usuarioService;
 	
-	private UsuarioServiceImpl usuarioService = new UsuarioServiceImpl();
-	private HabilidadServiceImpl habilidadService = new HabilidadServiceImpl();
+	private UsuarioService usuarioService = new UsuarioServiceImpl();
+	private HabilidadService habilidadService = new HabilidadServiceImpl();
 		
 	@Test
 	public void testNombreLongMin() {
@@ -406,7 +407,7 @@ public class UsuarioServiceImplTest {
 		
 		ArrayList<Habilidad> habilidades = new ArrayList<Habilidad>();
 		String nomHabilidad = "C";
-		String tipo = "Lenguaje de progrmación";		
+		String tipo = "Lenguaje de programación";		
 		int puntuacion = 5;
 				
 		int edad = 17;
@@ -435,7 +436,7 @@ public class UsuarioServiceImplTest {
 		
 		ArrayList<Habilidad> habilidades = new ArrayList<Habilidad>();
 		String nomHabilidad = "C";
-		String tipo = "Lenguaje de progrmación";		
+		String tipo = "Lenguaje de programación";		
 		int puntuacion = 5;
 				
 		int edad = 101;
@@ -464,7 +465,7 @@ public class UsuarioServiceImplTest {
 		
 		ArrayList<Habilidad> habilidades = new ArrayList<Habilidad>();
 		String nomHabilidad = "C";
-		String tipo = "Lenguaje de progrmación";		
+		String tipo = "Lenguaje de programación";		
 		int puntuacion = 5;
 				
 		int edad = 18;
@@ -493,7 +494,7 @@ public class UsuarioServiceImplTest {
 		
 		ArrayList<Habilidad> habilidades = new ArrayList<Habilidad>();
 		String nomHabilidad = "C";
-		String tipo = "Lenguaje de progrmación";		
+		String tipo = "Lenguaje de programación";		
 		int puntuacion = 5;
 				
 		int edad = 18;
@@ -510,8 +511,8 @@ public class UsuarioServiceImplTest {
 	}
 	
 	@Test
-	public void testAltaUsuario() throws AppExcepcion {
-		log.debug("Entrando a testAltaUsuario");
+	public void testAlta() throws AppExcepcion {
+		log.debug("Entrando a testAlta");
 		
 		String nombre = "Marco";
 		String apellidoPaterno = "Mandujano";
@@ -522,7 +523,7 @@ public class UsuarioServiceImplTest {
 		
 		ArrayList<Habilidad> habilidades = new ArrayList<Habilidad>();
 		String nomHabilidad = "C";
-		String tipo = "Lenguaje de progrmación";		
+		String tipo = "Lenguaje de programación";		
 		int puntuacion = 5;
 				
 		int edad = 18;
@@ -534,5 +535,56 @@ public class UsuarioServiceImplTest {
 				correo, contrasenia, telefono, habilidades, edad, web, titulo);
 		
 		Assert.assertNotNull(usuario);
+	}
+	
+	@Test
+	public void testReputacionMin() {
+		log.debug("Entrando a testReputacionMin");
+		
+		Usuario usuario = null;
+		String correo = "marco.madujano@gmail.com";
+		
+		int reputacion = -1;
+		
+		try {
+			usuario = usuarioService.findUsuario(correo);
+			usuarioService.setReputacion(usuario, reputacion);
+			
+		} catch (AppExcepcion e) {
+			Assert.assertEquals(Error.MAL_REPUTACION, e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testReputacionMax() {
+		log.debug("Entrando a testReputacionMax");
+		
+		Usuario usuario = null;
+		String correo = "marco.madujano@gmail.com";
+		
+		int reputacion = 6;
+		
+		try {
+			usuario = usuarioService.findUsuario(correo);
+			usuarioService.setReputacion(usuario, reputacion);
+			
+		} catch (AppExcepcion e) {
+			Assert.assertEquals(Error.MAL_REPUTACION, e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testSetReputacion() throws AppExcepcion {
+		log.debug("Entrando a testSetReputacion");
+		
+		Usuario usuario = null;
+		String correo = "marco.madujano@gmail.com";
+		
+		int reputacion = 5;
+		
+		usuario = usuarioService.findUsuario(correo);
+		usuario = usuarioService.setReputacion(usuario, reputacion);
+		
+		Assert.assertEquals(usuario.getReputacion(), reputacion);
 	}
 }

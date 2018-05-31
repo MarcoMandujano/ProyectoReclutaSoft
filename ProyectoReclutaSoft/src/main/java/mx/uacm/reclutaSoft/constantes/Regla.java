@@ -36,7 +36,7 @@ public class Regla {
 		
 	public static final List<String> TIPO_HABILIDAD = ListUtils.
 			unmodifiableList(new ArrayList<String>(Arrays.
-					asList("Idioma", "Lenguaje de progrmación", "Framework", "otro")
+					asList("Idioma", "Lenguaje de programación", "Framework", "otro")
 					));
 	
 	public static final int MIN_PUNTUACION = 0;
