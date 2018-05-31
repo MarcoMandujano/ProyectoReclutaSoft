@@ -11,14 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import mx.uacm.reclutaSoft.Application;
 import mx.uacm.reclutaSoft.constantes.Error;
 import mx.uacm.reclutaSoft.constantes.Regla;
 import mx.uacm.reclutaSoft.domain.Proyecto;
 import mx.uacm.reclutaSoft.domain.Rol;
 import mx.uacm.reclutaSoft.excepcion.AppExcepcion;
 import mx.uacm.reclutaSoft.service.ProyectoService;
-import mx.uacm.reclutasoftw.Application;
-
 import mx.uacm.reclutaSoft.service.impl.ProyectoServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)

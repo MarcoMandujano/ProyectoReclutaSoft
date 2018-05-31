@@ -1,7 +1,8 @@
-package mx.uacm.reclutasoftw;
+package mx.uacm.reclutaSoft;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 
 @SpringBootApplication
 public class Application {

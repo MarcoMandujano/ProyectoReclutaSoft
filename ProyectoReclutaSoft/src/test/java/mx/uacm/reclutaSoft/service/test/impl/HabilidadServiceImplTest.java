@@ -9,14 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import mx.uacm.reclutaSoft.Application;
 import mx.uacm.reclutaSoft.constantes.Error;
 import mx.uacm.reclutaSoft.constantes.Regla;
 import mx.uacm.reclutaSoft.domain.Habilidad;
 import mx.uacm.reclutaSoft.excepcion.AppExcepcion;
 import mx.uacm.reclutaSoft.service.HabilidadService;
-import mx.uacm.reclutasoftw.Application;
-
 import mx.uacm.reclutaSoft.service.impl.HabilidadServiceImpl;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes=Application.class)
