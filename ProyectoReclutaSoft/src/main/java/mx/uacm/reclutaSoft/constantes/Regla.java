@@ -22,7 +22,7 @@ public class Regla {
 	public static final int LONG_MIN_MATERNO = 4;
 	public static final int LONG_MAX_MATERNO = 20;
 	
-	public static final String REGEX_CORREO = "";
+	public static final String REGEX_CORREO = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$";
 	
 	public static final int LONG_MIN_CONTRASENIA = 8;
 	public static final int LONG_MAX_CONTRASENIA = 12;
@@ -31,12 +31,12 @@ public class Regla {
 	public static final int LONG_TELEFONO = 10;
 	
 	public static final String REGEX_NOM_HABILIDAD = "^[ 0-9A-Za-záéíóú]+$";
-	public static final int LONG_MIN_HABILIDAD = 3;
+	public static final int LONG_MIN_HABILIDAD = 1;
 	public static final int LONG_MAX_HABILIDAD = 70;
 		
 	public static final List<String> TIPO_HABILIDAD = ListUtils.
 			unmodifiableList(new ArrayList<String>(Arrays.
-					asList("Idioma", "Lenguaje de progrmación", "Framework", "otro")
+					asList("Idioma", "Lenguaje de programación", "Framework", "otro")
 					));
 	
 	public static final int MIN_PUNTUACION = 0;
@@ -45,8 +45,8 @@ public class Regla {
 	public static final int MIN_EDAD = 18;
 	public static final int MAX_EDAD = 100;
 	
-	public static final String REGEX_WEB = "";
-	
+	public static final String REGEX_WEB = "^(https?://)?(([\\w!~*'().&=+$%-]+: )?[\\w!~*'().&=+$%-]+@)?(([0-9]{1,3}\\.){3}[0-9]{1,3}|([\\w!~*'()-]+\\.)*([\\w^-][\\w-]{0,61})?[\\w]\\.[a-z]{2,6})(:[0-9]{1,4})?((/*)|(/+[\\w!~*'().;?:@&=+$,%#-]+)+/*)$";
+		
 	public static final int MIN_REPUTACION = 0;
 	public static final int MAX_REPUTACION = 5;
 		

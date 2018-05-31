@@ -1,8 +1,9 @@
-package mx.uacm.reclutaSoft.service.test.impl;
+package mx.uacm.reclutaSoft.service.impl;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import mx.uacm.reclutaSoft.constantes.Error;
 import mx.uacm.reclutaSoft.constantes.Regla;
@@ -11,6 +12,7 @@ import mx.uacm.reclutaSoft.excepcion.AppExcepcion;
 import mx.uacm.reclutaSoft.persistence.HabilidadRepository;
 import mx.uacm.reclutaSoft.service.HabilidadService;
 
+@Service
 public class HabilidadServiceImpl implements HabilidadService {
 
 	private static final Logger log = LogManager.getLogger(HabilidadServiceImpl.class);
@@ -39,6 +41,10 @@ public class HabilidadServiceImpl implements HabilidadService {
 			throw new AppExcepcion(Error.MAL_PT_HABILIDAD, Error.NO_RANGO);
 		}
 		
+		habilidad = new Habilidad();
+		habilidad.setNombre(nombre);
+		habilidad.setTipo(tipo);
+		habilidad.setPuntuacion(puntuacion);
 		//habilidadRepository.save(habilidad);
 		
 		return habilidad;

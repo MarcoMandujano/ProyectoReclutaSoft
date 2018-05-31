@@ -1,19 +1,22 @@
-package mx.uacm.reclutaSoft.service.test.impl;
+package mx.uacm.reclutaSoft.service.impl;
 
 import java.util.ArrayList;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import mx.uacm.reclutaSoft.constantes.Regla;
 import mx.uacm.reclutaSoft.constantes.Error;
 import mx.uacm.reclutaSoft.domain.Habilidad;
+import mx.uacm.reclutaSoft.domain.Proyecto;
 import mx.uacm.reclutaSoft.domain.Usuario;
 import mx.uacm.reclutaSoft.excepcion.AppExcepcion;
 import mx.uacm.reclutaSoft.persistence.UsuarioRepository;
 import mx.uacm.reclutaSoft.service.UsuarioService;
 
+@Service
 public class UsuarioServiceImpl implements UsuarioService {
 	
 	private static final Logger log = LogManager.getLogger(UsuarioServiceImpl.class);
@@ -64,7 +67,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 			throw new AppExcepcion(Error.MAL_TELEFONO, Error.NO_NUMEROS);
 		}
 		
-		if (telefono.length() == Regla.LONG_TELEFONO) {
+		if (telefono.length() != Regla.LONG_TELEFONO) {
 			throw new AppExcepcion(Error.MAL_TELEFONO, Error.NO_LONGITUD);
 		}
 		
@@ -97,6 +100,49 @@ public class UsuarioServiceImpl implements UsuarioService {
 		usuario.setTitulo(titulo);
 		
 		//usuarioRepository.save(usuario);		
+		return usuario;
+	}
+	
+	public Usuario setReputacion(Usuario usuario, int reputacion) throws AppExcepcion {	
+		log.debug("Entrando a setReputacion");
+				
+		if (reputacion < Regla.MIN_REPUTACION || reputacion > Regla.MAX_REPUTACION) {
+			throw new AppExcepcion(Error.MAL_REPUTACION, Error.NO_RANGO);
+		}
+		
+		//usuario = usuarioRepository
+		usuario.setReputacion(reputacion);
+		return usuario;
+	}
+	
+	public Usuario setPartcicipacion(Usuario usuario, Proyecto proyecto) throws AppExcepcion {
+		log.debug("Entrando a setPartcicipacion");
+		
+		return usuario;
+	}
+	
+	public Usuario findUsuario(String correo) throws AppExcepcion {
+		log.debug("Entrando a findUsuario");
+		
+		//Usuario usuario = usuarioRepository.find
+		
+		ArrayList<Habilidad> habilidades = new ArrayList<Habilidad>();
+		String nomHabilidad = "C";
+		String tipo = "Lenguaje de progrmación";		
+		int puntuacion = 5;
+		
+		Usuario usuario = new Usuario();
+		usuario.setNombre("Marco");
+		usuario.setApellidoPaterno("Mandujano");
+		usuario.setApellidoMaterno("Hernandez");
+		usuario.setCorreo(correo);
+		usuario.setContrasenia("qwerty123");
+		usuario.setTelefono("1547896358");
+		usuario.setHabilidades(habilidades);
+		usuario.setEdad(18);
+		usuario.setWeb("http://marcoWeb.com/info");
+		usuario.setTitulo("Estudiante");
+		
 		return usuario;
 	}
 }
