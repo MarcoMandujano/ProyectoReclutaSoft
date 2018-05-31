@@ -12,6 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+/** hola
+ * 
+ * @author marco
+ *
+ */
 @Entity
 public class Rol {
 	@Id
