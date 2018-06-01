@@ -1,6 +1,7 @@
 package mx.uacm.reclutaSoft.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -36,12 +37,12 @@ public class Usuario {
 	private String contrasenia;
 	
 	@OneToMany(mappedBy="usuario", cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY)
-	private ArrayList<Proyecto> participaciones;
+	private List<Proyecto> participaciones;
 	
 	private String telefono;
 	
 	@OneToMany(mappedBy="usuario", cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY)
-	private ArrayList<Habilidad> habilidades;
+	private List<Habilidad> habilidades;
 	
 	private int edad;
 	
@@ -107,11 +108,11 @@ public class Usuario {
 		this.contrasenia = contrasenia;
 	}
 
-	public ArrayList<Proyecto> getParticipaciones() {
+	public List<Proyecto> getParticipaciones() {
 		return participaciones;
 	}
 
-	public void setParticipaciones(ArrayList<Proyecto> participaciones) {
+	public void setParticipaciones(List<Proyecto> participaciones) {
 		this.participaciones = participaciones;
 	}
 	
@@ -133,11 +134,11 @@ public class Usuario {
 		this.telefono = telefono;
 	}
 
-	public ArrayList<Habilidad> getHabilidades() {
+	public List<Habilidad> getHabilidades() {
 		return habilidades;
 	}
 
-	public void setHabilidades(ArrayList<Habilidad> habilidades) {
+	public void setHabilidades(List<Habilidad> habilidades) {
 		this.habilidades = habilidades;
 	}
 	

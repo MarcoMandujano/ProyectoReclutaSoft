@@ -25,10 +25,10 @@ import mx.uacm.reclutaSoft.service.impl.ProyectoServiceImpl;
 public class ProyectoServiceImplTest {
 	private static final Logger log = LogManager.getLogger(ProyectoServiceImplTest.class);
 	
-//	@Autowired
-//	private ProyectoService proyectoService;
+	@Autowired
+	private ProyectoService proyectoService;
 	
-	private ProyectoService proyectoService = new ProyectoServiceImpl();
+//	private ProyectoService proyectoService = new ProyectoServiceImpl();
 		
 	@Test
 	public void testNombreMin() {

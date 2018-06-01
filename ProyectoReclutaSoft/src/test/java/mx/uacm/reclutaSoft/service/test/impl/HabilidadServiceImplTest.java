@@ -23,10 +23,10 @@ import mx.uacm.reclutaSoft.service.impl.HabilidadServiceImpl;
 public class HabilidadServiceImplTest {
 	private static final Logger log = LogManager.getLogger(HabilidadServiceImplTest.class);
 	
-//	@Autowired
-//	private HabilidadService habilidadService;
+	@Autowired
+	private HabilidadService habilidadService;
 	
-	private HabilidadService habilidadService = new HabilidadServiceImpl();
+//	private HabilidadService habilidadService = new HabilidadServiceImpl();
 		
 	@Test
 	public void testNombreMin() {

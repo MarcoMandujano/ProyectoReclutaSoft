@@ -1,6 +1,7 @@
 package mx.uacm.reclutaSoft.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,11 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-/** hola
- * 
- * @author marco
- *
- */
 @Entity
 public class Rol {
 	@Id
@@ -30,7 +26,7 @@ public class Rol {
 	private String nombre;
 	
 	@OneToMany(mappedBy="rol", cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY)
-	private ArrayList<Usuario> usuarios;
+	private List<Usuario> usuarios = new ArrayList<Usuario>();
 
 	public long getId() {
 		return id;
@@ -56,11 +52,11 @@ public class Rol {
 		this.nombre = nombre;
 	}
 
-	public ArrayList<Usuario> getUsuarios() {
+	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(ArrayList<Usuario> usuarios) {
+	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
 	
