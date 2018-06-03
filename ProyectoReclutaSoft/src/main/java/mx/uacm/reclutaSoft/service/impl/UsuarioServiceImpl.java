@@ -1,6 +1,7 @@
 package mx.uacm.reclutaSoft.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -25,7 +26,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	private UsuarioRepository usuarioRepository;
 	
 	public Usuario alta(String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contrasenia, 
-			String telefono, ArrayList<Habilidad> habilidades, int edad, String web, String titulo) throws AppExcepcion {
+			String telefono, List<Habilidad> habilidades, int edad, String web, String titulo) throws AppExcepcion {
 		
 		log.debug("Entrando a alta");
 			
