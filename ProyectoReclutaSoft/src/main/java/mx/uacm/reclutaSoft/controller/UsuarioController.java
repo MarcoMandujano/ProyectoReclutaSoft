@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import mx.uacm.reclutaSoft.constantes.Error;
 import mx.uacm.reclutaSoft.domain.Habilidad;
@@ -26,7 +27,9 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	
 	@PostMapping("/registrarUsuario")
-	public String registrarUsuario(Map <String, Object> model, Usuario usuario) {
+	public String registrarUsuario(Map <String, Object> model, Usuario usuario,
+			                       @RequestParam("lenguaje") List<String>lenguajes,
+			                       @RequestParam("idioma") List<String>idiomas){
 		log.debug("Entrando al metodo UsuarioController.registrarUsuario");
 		
 		String nombre = usuario.getNombre();
@@ -35,6 +38,28 @@ public class UsuarioController {
 		String correo = usuario.getCorreo();
 		String contrasenia = usuario.getContrasenia();
 		String telefono = usuario.getTelefono();
+		
+		List<Habilidad> habilidadesTemp = new ArrayList<Habilidad>();
+		
+		for (String lenguaje : lenguajes) {
+			log.debug("lenguaje = " + lenguaje);
+			Habilidad habilidad = new Habilidad();
+			habilidad.setTipo("Lenguaje de programacion");
+			habilidad.setNombre(lenguaje);
+			habilidad.setPuntuacion(0);
+			habilidadesTemp.add(habilidad);
+		}
+		
+		for (String idioma : idiomas) {
+			log.debug("idioma = " + idioma);
+			Habilidad habilidad = new Habilidad();
+			habilidad.setTipo("Idioma");
+			habilidad.setNombre(idioma);
+			habilidad.setPuntuacion(0);
+			habilidadesTemp.add(habilidad);
+		}
+		usuario.setHabilidades(habilidadesTemp);
+		
 		List<Habilidad> habilidades = usuario.getHabilidades();
 		int edad = usuario.getEdad();
 		String web = usuario.getWeb();

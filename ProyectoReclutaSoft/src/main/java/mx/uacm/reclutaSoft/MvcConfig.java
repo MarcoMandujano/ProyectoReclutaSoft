@@ -15,6 +15,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 		//Redireccionando a la vista request cada vez que ponga /peticion.
 		registry.addViewController("/peticion").setViewName("request");
 		
+		registry.addViewController("/registro").setViewName("registro");
 	}
 	
 	@Override
