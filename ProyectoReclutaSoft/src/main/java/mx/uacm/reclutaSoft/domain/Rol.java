@@ -58,6 +58,9 @@ public class Rol {
 
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
+		for (Usuario usuario : usuarios) {
+			usuario.setRol(this);
+		}
 	}
 	
 	public void setUsuario(Usuario usuario) {

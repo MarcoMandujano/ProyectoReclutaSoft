@@ -28,7 +28,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public Usuario alta(String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contrasenia, 
 			String telefono, List<Habilidad> habilidades, int edad, String web, String titulo) throws AppExcepcion {
 		
-		log.debug("Entrando a alta");
+		log.debug("Entrando a UsuarioServiceImpl.alta");
 			
 		Usuario usuario = null;
 		
@@ -100,7 +100,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		usuario.setWeb(web);
 		usuario.setTitulo(titulo);
 		
-//		usuarioRepository.save(usuario);		
+		usuarioRepository.save(usuario);		
 		return usuario;
 	}
 	

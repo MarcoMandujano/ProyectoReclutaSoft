@@ -114,6 +114,9 @@ public class Usuario {
 
 	public void setParticipaciones(List<Proyecto> participaciones) {
 		this.participaciones = participaciones;
+		for (Proyecto proyecto : participaciones) {
+			proyecto.setUsuario(this);
+		}
 	}
 	
 	public void setParticipacion(Proyecto proyecto) {
@@ -140,6 +143,9 @@ public class Usuario {
 
 	public void setHabilidades(List<Habilidad> habilidades) {
 		this.habilidades = habilidades;
+		for (Habilidad habilidad : habilidades) {
+			habilidad.setUsuario(this);
+		}
 	}
 	
 	public void setHabilidad(Habilidad habilidad) {

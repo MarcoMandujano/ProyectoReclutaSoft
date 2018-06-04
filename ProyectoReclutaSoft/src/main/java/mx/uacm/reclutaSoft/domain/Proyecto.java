@@ -68,6 +68,9 @@ public class Proyecto {
 
 	public void setRoles(ArrayList<Rol> roles) {
 		this.roles = roles;
+		for (Rol rol : roles) {
+			rol.setProyecto(this);
+		}
 	}
 	
 	public void setRol(Rol rol) {
