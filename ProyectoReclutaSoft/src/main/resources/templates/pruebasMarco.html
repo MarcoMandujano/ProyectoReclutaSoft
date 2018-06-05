@@ -73,11 +73,15 @@
 			<input type="submit" value="Enviar"/>
 		</form>
 		
-		<a th:href="@{/primerservlet/obtenerModelos}" class="badge badge-info">Ver modelos</a>
+		<a th:href="@{/usuarioController/obtenerUsuarios}" class="badge badge-info">Ver modelos</a>
 		
-		<ul th:each="vehiculo : ${vehiculos}">
+		<ul th:each="usuario : ${usuarios}">
 			<li>
-				<span th:text="${vehiculo.modelo}" style="color: white"></span>
+				<span th:text="${usuario.nombre}" style="color: white"></span>
+				<span th:text="${usuario.apellidoPaterno}" style="color: white"></span>
+				<span th:text="${usuario.apellidoMaterno}" style="color: white"></span>
+				<span th:text="${usuario.correo}" style="color: white"></span>
+				<span th:text="${usuario.reputacion}" style="color: white"></span>
 			</li>
 		</ul>
 		

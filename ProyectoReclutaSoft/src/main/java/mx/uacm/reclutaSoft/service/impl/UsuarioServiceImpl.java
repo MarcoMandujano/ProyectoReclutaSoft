@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -145,5 +146,36 @@ public class UsuarioServiceImpl implements UsuarioService {
 		usuario.setTitulo("Estudiante");
 		
 		return usuario;
+	}
+	
+	//falta hacer test
+	public Usuario findByEmailAndPassword(String correo, String contrasenia) throws AppExcepcion {
+		log.debug("Entrando a UsuarioServiceImpl.findByEmailAndPassword");
+		
+		if (!(correo.matches(Regla.REGEX_CORREO))) {
+			throw new AppExcepcion(Error.MAL_CORREO, Error.NO_CORREO);
+		}
+		
+		if (contrasenia.length() < Regla.LONG_MIN_CONTRASENIA || contrasenia.length() > Regla.LONG_MAX_CONTRASENIA) {
+			throw new AppExcepcion(Error.MAL_CONTRASENIA, Error.NO_LONGITUD);
+		}
+		
+		Usuario usuario = new Usuario();
+		
+		usuario = usuarioRepository.findByEmailAndPassword(correo, contrasenia);
+		
+				
+		return usuario;
+	}
+	
+	//falta hacer test
+	public List<Usuario> findUsuarios() throws AppExcepcion {
+		log.debug("Entrando a UsuarioServiceImpl.findUsuarios");
+		
+//		List<Usuario> usuarios = Lists.newArrayList(usuarioRepository.findAll());
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		usuarios = usuarioRepository.findAllUsers();
+		
+		return usuarios;
 	}
 }

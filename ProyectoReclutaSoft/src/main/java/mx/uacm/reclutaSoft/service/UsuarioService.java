@@ -18,4 +18,11 @@ public interface UsuarioService {
 	public Usuario setPartcicipacion(Usuario usuario, Proyecto proyecto) throws AppExcepcion;
 	
 	public Usuario findUsuario(String correo) throws AppExcepcion;
+	
+	//falta hacer test
+	public Usuario findByEmailAndPassword(String correo, String contrasenia) throws AppExcepcion;
+	
+	//falta hacer test
+	public List<Usuario> findUsuarios() throws AppExcepcion;
+	
 }

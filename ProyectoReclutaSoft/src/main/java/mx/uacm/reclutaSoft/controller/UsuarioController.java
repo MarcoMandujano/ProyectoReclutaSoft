@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +28,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private HttpSession httpSession; 
 	
 	@PostMapping("/registrarUsuario")
 	public String registrarUsuario(Map <String, Object> model, Usuario usuario,
@@ -65,7 +71,7 @@ public class UsuarioController {
 		String web = usuario.getWeb();
 		String titulo = usuario.getTitulo();
 		
-		Usuario usuarioRegresado = null;
+		Usuario usuarioRegresado = new Usuario();
 		
 		try {
 			usuarioRegresado = usuarioService.alta(nombre, apellidoPaterno,
@@ -124,4 +130,56 @@ public class UsuarioController {
 		return "redirect:/perfil";
 	}
 	
+	@PostMapping("/login")
+	public String login(Map <String, Object> model, Usuario usuario) {
+		log.debug("Entrando al metodo UsuarioController.login");
+		String correo = usuario.getCorreo();
+		String contrasenia = usuario.getContrasenia();
+		
+		Usuario usuarioRegresado = new Usuario();
+		
+		try {
+			usuarioRegresado = usuarioService.findByEmailAndPassword(correo, contrasenia);
+			
+			if (usuarioRegresado != null) {
+				httpSession.setAttribute("userLoggedIn", usuarioRegresado);
+				model.put("exitoso", "Login exitoso");
+			} else {
+				model.put("error", "Error en el correo de usuario o en la contrasenia");
+				return "redirect:/error";
+			}
+		} catch (Exception e) {
+			switch (e.getMessage()) {
+			case Error.MAL_CORREO:
+				model.put("error", Error.MAL_CORREO);
+				return "redirect:/error";
+				
+			case Error.MAL_CONTRASENIA:
+				model.put("error", Error.MAL_CONTRASENIA);
+				return "redirect:/error";
+
+			default:
+				break;
+			}
+		}
+		return "index";
+	}
+	
+	@GetMapping("/obtenerUsuarios")
+	public String obtenerUsuarios(Map <String, Object> model) {
+		log.debug("Entrando al metodo UsuarioController.obtenerUsuarios");
+		
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		
+		try {
+			usuarios = usuarioService.findUsuarios();
+			
+			model.put("usuarios", usuarios);
+		} catch (AppExcepcion e) {
+			model.put("error", e.getMessage());
+			return "redirect:/error";
+		}
+		
+		return "pruebasMarco";
+	}
 }
