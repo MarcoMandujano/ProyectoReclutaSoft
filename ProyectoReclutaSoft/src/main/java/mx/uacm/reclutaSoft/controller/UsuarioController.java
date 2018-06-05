@@ -71,6 +71,8 @@ public class UsuarioController {
 		String web = usuario.getWeb();
 		String titulo = usuario.getTitulo();
 		
+//		log.debug(titulo);
+		
 		Usuario usuarioRegresado = new Usuario();
 		
 		try {
@@ -83,42 +85,52 @@ public class UsuarioController {
 //			String excepcion = e.getMessage();
 			switch (e.getMessage()) {
 			case Error.MAL_NOMBRE:
+				log.debug("Error MAL_NOMBRE");
 				model.put("error", Error.MAL_NOMBRE);
 				return "redirect:/error";
 				
 			case Error.MAL_AP_PATERNO:
+				log.debug("Error MAL_AP_PATERNO");
 				model.put("error", Error.MAL_AP_PATERNO);
 				return "redirect:/error";
 				
 			case Error.MAL_AP_MATERNO:
+				log.debug("Error MAL_AP_MATERNO");
 				model.put("error", Error.MAL_AP_MATERNO);
 				return "redirect:/error";
 			
 			case Error.MAL_CORREO:
+				log.debug("Error MAL_CORREO");
 				model.put("error", Error.MAL_CORREO);
 				return "redirect:/error";
 				
 			case Error.MAL_CONTRASENIA:
+				log.debug("Error MAL_CONTRASENIA");
 				model.put("error", Error.MAL_CONTRASENIA);
 				return "redirect:/error";
 				
 			case Error.MAL_TELEFONO:
+				log.debug("Error MAL_TELEFONO");
 				model.put("error", Error.MAL_TELEFONO);
 				return "redirect:/error";
 				
 			case Error.MAL_HABILIDADES:
+				log.debug("Error MAL_HABILIDADES");
 				model.put("error", Error.MAL_HABILIDADES);
 				return "redirect:/error";
 			
 			case Error.MAL_EDAD:
+				log.debug("Error MAL_EDAD");
 				model.put("error", Error.MAL_EDAD);
 				return "redirect:/error";
 				
 			case Error.MAL_WEB:
-				model.put("error", Error.MAL_AP_PATERNO);
+				log.debug("Error MAL_WEB");
+				model.put("error", Error.MAL_WEB);
 				return "redirect:/error";	
 			
 			case Error.MAL_GR_ACADEMICO:
+				log.debug("Error MAL_GR_ACADEMICO");
 				model.put("error", Error.MAL_GR_ACADEMICO);
 				return "redirect:/error";
 				
@@ -162,7 +174,7 @@ public class UsuarioController {
 				break;
 			}
 		}
-		return "index";
+		return "redirect:/perfil";
 	}
 	
 	@GetMapping("/obtenerUsuarios")
