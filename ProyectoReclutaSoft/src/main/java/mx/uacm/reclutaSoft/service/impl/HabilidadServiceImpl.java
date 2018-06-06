@@ -1,5 +1,8 @@
 package mx.uacm.reclutaSoft.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +53,20 @@ public class HabilidadServiceImpl implements HabilidadService {
 		return habilidad;
 	}
 	
+	
+	//falta hacer test
+		public List<Habilidad> findHabilidadByUserName(String nombre) throws AppExcepcion {
+			log.debug("Entrando a UsuarioServiceImpl.findHabilidadByUserName");
+			
+			if (!(nombre.matches(Regla.REGEX_NOMBRE))) {
+				throw new AppExcepcion(Error.MAL_NOMBRE, Error.NO_LETRAS_ESPACIOS);
+			}
+			
+			List<Habilidad> habilidades = new ArrayList<Habilidad>();
+			
+			habilidades = habilidadRepository.findHabilidadesByUserName(nombre);
+			
+			return habilidades;
+		}
 	
 }

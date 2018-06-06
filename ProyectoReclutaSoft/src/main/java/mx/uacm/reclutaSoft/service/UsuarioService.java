@@ -25,4 +25,6 @@ public interface UsuarioService {
 	//falta hacer test
 	public List<Usuario> findUsuarios() throws AppExcepcion;
 	
+	//falta hacer test
+	public List<Usuario> findUsersByHabilidadTipoAndNombre(String tipo, String nombreHabilidad) throws AppExcepcion;
 }

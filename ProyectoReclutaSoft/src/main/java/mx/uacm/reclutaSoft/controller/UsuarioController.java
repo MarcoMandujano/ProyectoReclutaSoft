@@ -194,4 +194,38 @@ public class UsuarioController {
 		
 		return "pruebasMarco";
 	}
+	
+	@GetMapping("/obtenerUsuariosPorNombreYTipoDeHabilidad")
+	public String obtenerUsuariosPorNombreYTipoDeHabilidad(Map <String, Object> model, 
+														   @RequestParam("tipo") String tipo, 
+														   @RequestParam("nombre") String nombre) {
+		log.debug("Entrando al metodo UsuarioController.obtenerUsuariosPorNombreYTipoDeHabilidad");
+		
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		
+		try {
+			usuarios = usuarioService.findUsersByHabilidadTipoAndNombre(tipo, nombre);
+			
+			model.put("usuarios", usuarios);
+		} catch (AppExcepcion e) {
+			
+			switch (e.getMessage()) {
+			case Error.MAL_NOM_HABILIDAD:
+				log.debug("Error MAL_NOM_HABILIDAD");
+				model.put("error", Error.MAL_NOM_HABILIDAD);
+				return "redirect:/error";
+				
+			case Error.MAL_TP_HABILIDAD:
+				log.debug("Error MAL_TP_HABILIDAD");
+				model.put("error", Error.MAL_TP_HABILIDAD);
+				return "redirect:/error";
+				
+			default:
+				break;
+			}
+		}
+		
+		
+		return "pruebasMarco";
+	}
 }

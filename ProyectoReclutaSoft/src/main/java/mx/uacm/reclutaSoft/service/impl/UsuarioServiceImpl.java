@@ -178,4 +178,28 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 		return usuarios;
 	}
+	
+	//falta hacer test
+	public List<Usuario> findUsersByHabilidadTipoAndNombre(String tipo, String nombreHabilidad) throws AppExcepcion {
+		log.debug("Entrando a UsuarioServiceImpl.findUsersByHabilidadTipoAndNombre");
+		
+		if (!(nombreHabilidad.matches(Regla.REGEX_NOM_HABILIDAD))) {
+			throw new AppExcepcion(Error.MAL_NOM_HABILIDAD, Error.NO_LET_ESP_NUM);
+		}
+		
+		if (nombreHabilidad.length() < Regla.LONG_MIN_HABILIDAD || nombreHabilidad.length() > Regla.LONG_MAX_HABILIDAD) {
+			throw new AppExcepcion(Error.MAL_NOM_HABILIDAD, Error.NO_LONGITUD);
+		}
+		
+		if (!Regla.TIPO_HABILIDAD.contains(tipo)) {
+			throw new AppExcepcion(Error.MAL_TP_HABILIDAD, Error.NO_ENCONTRADO);
+		}
+		
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		
+		usuarios = usuarioRepository.findUsersByHabilidadTipoAndNombre(tipo, nombreHabilidad);
+		
+		return usuarios;
+	}
+	
 }
