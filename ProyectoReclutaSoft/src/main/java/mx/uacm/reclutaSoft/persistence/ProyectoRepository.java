@@ -11,4 +11,6 @@ public interface ProyectoRepository extends CrudRepository<Proyecto, Long> {
 	
 	@Query(value="select * from proyecto", nativeQuery=true)
 	List<Proyecto> findAllProjects();
+	
+	
 }

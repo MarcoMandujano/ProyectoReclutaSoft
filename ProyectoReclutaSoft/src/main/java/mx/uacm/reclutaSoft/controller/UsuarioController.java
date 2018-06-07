@@ -35,7 +35,7 @@ public class UsuarioController {
 	@PostMapping("/registrarUsuario")
 	public String registrarUsuario(Map <String, Object> model, Usuario usuario,
 			                       @RequestParam("lenguaje") List<String>lenguajes,
-			                       @RequestParam("idioma") List<String>idiomas){
+			                       @RequestParam("idioma") List<String>idiomas) {
 		log.debug("Entrando al metodo UsuarioController.registrarUsuario");
 		
 		String nombre = usuario.getNombre();
@@ -155,6 +155,7 @@ public class UsuarioController {
 			
 			if (usuarioRegresado != null) {
 				httpSession.setAttribute("userLoggedIn", usuarioRegresado);
+				
 				model.put("exitoso", "Login exitoso");
 			} else {
 				model.put("error", "Error en el correo de usuario o en la contrasenia");
@@ -174,6 +175,7 @@ public class UsuarioController {
 				break;
 			}
 		}
+		
 		return "redirect:/perfil";
 	}
 	
