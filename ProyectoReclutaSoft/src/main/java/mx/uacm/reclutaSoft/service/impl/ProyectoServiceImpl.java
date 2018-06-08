@@ -12,7 +12,6 @@ import mx.uacm.reclutaSoft.constantes.Regla;
 import mx.uacm.reclutaSoft.constantes.Error;
 import mx.uacm.reclutaSoft.domain.Proyecto;
 import mx.uacm.reclutaSoft.domain.Rol;
-import mx.uacm.reclutaSoft.domain.Usuario;
 import mx.uacm.reclutaSoft.excepcion.AppExcepcion;
 import mx.uacm.reclutaSoft.persistence.ProyectoRepository;
 import mx.uacm.reclutaSoft.service.ProyectoService;
@@ -50,7 +49,8 @@ public class ProyectoServiceImpl implements ProyectoService {
 				
 		//proyectoRepository.save(proyecto);		
 		return proyecto;
-	}
+	}	
+	
 	
 	//falta probar
 	public List<Proyecto> findPoryectos() throws AppExcepcion {
@@ -63,34 +63,3 @@ public class ProyectoServiceImpl implements ProyectoService {
 		return proyectos;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -55,18 +55,19 @@ public class HabilidadServiceImpl implements HabilidadService {
 	
 	
 	//falta hacer test
-		public List<Habilidad> findHabilidadByUserName(String nombre) throws AppExcepcion {
-			log.debug("Entrando a UsuarioServiceImpl.findHabilidadByUserName");
+	public List<Habilidad> findHabilidadByUserName(String nombre) throws AppExcepcion {
+		log.debug("Entrando a UsuarioServiceImpl.findHabilidadByUserName");
 			
-			if (!(nombre.matches(Regla.REGEX_NOMBRE))) {
-				throw new AppExcepcion(Error.MAL_NOMBRE, Error.NO_LETRAS_ESPACIOS);
-			}
-			
-			List<Habilidad> habilidades = new ArrayList<Habilidad>();
-			
-			habilidades = habilidadRepository.findHabilidadesByUserName(nombre);
-			
-			return habilidades;
+		if (!(nombre.matches(Regla.REGEX_NOMBRE))) {
+			throw new AppExcepcion(Error.MAL_NOMBRE, Error.NO_LETRAS_ESPACIOS);
 		}
+		
+		List<Habilidad> habilidades = new ArrayList<Habilidad>();
+		
+		habilidades = habilidadRepository.findHabilidadesByUserName(nombre);
+				
+		return habilidades;
+	}
+	
 	
 }

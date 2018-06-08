@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content="Javier Monroy Salcedo"></meta>
+    
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{webjars/bootstrap/4.1.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{webjars/datatables/1.10.16/css/dataTables.bootstrap4.css}" rel="stylesheet"/> 
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.5/css/select.bootstrap4.min.css"/>
+    
+    <script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+    
+    <script src="webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    
+    <script src="webjars/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="webjars/datatables/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    
+   <!--  <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script> -->
+    <script src="webjars/datatables.net-select/1.0.1/js/dataTables.select.min.js"></script>
+    
+ 	
+    
+	<title>Registrar proyecto
+	</title>
+	
+	<script type="text/javascript">
+	
+		
+		$( document ).ready(function() {
+			$(".secciones").hide();
+			/*$(".botones").click(function() {
+				
+				console.log(this.id);
+				
+				$(".secciones").hide();
+				
+				$("#" + this.id).show();
+				
+			});*/
+			
+			
+			mostrar = function (id) {
+				$("#"+id).show();
+			}
+			
+			
+			
+	    });
+		
+		
+		
+	</script>
+</head>
+<body>
+
+	<div class="container">
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <a class="navbar-brand" href="#">Navbar</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <!-- <li class="nav-item active">
+                    <a class="nav-link" href="#">Perfil 
+                    	<span class="sr-only">(current)</span>
+                   	</a>
+                  </li> -->
+                  <li class="nav-item botones">
+                    <a class="nav-link" href="#" id="perfil" onclick="mostrar('registroPerfil')">Perfil 
+                    	<!-- <span class="sr-only">(current)</span> -->
+                   	</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link botones" href="#" id="registrar"  onclick="mostrar('registroProyecto')">Registrar Poryectos</a>
+                  </li>
+                  <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                  </li> -->
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </div>
+            </nav>
+            <div id ="registroProyecto" class="jumbotron secciones">
+              <h1 class="display-4">Registro</h1>
+              <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+              <hr class="my-4"/>
+              <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+              <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+              </p>
+            </div>
+             <div id ="registroPerfil" class="jumbotron secciones">
+              <h1 class="display-4">Registro</h1>
+              <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+              <hr class="my-4"/>
+              <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+              <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+              </p>
+            </div>
+     </div>
+		
+
+	<div class="conteiner">
+		<a th:href="@{/registrarProyecto/regProyecto}" class="badge badge-info">Registrar proyecto</a> <br></br>
+	<!-- Jquery y Boostrap scripts -->
+	</div>
+   
+</body>
+</html>

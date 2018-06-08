@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import mx.uacm.reclutaSoft.domain.Habilidad;
 import mx.uacm.reclutaSoft.domain.Usuario;
 
 public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
@@ -19,7 +18,4 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 	
 	@Query(value="SELECT * FROM Usuario where id in (select usuario_id from Habilidad where tipo = :tipo and nombre = :nombreHabilidad)", nativeQuery=true)
 	List<Usuario> findUsersByHabilidadTipoAndNombre(@Param("tipo") String tipo, @Param("nombreHabilidad") String nombreHabilidad);
-	
-	
-	
 }

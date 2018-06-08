@@ -116,7 +116,7 @@
 						  </tbody>
 						</table>
 					</div> -->
-					<a th:href="@{/usuarioController/obtenerUsuariosDos}" class="badge badge-info">Ver candidatos</a><br></br>
+					<a th:href="@{/usuarioController/obtenerUsuarios}" class="badge badge-info">Ver candidatos</a><br></br>
 					<div id="liderList2">
 						<table class="table table-bordered" id="tbLiderList" style="width:100%">
 						  <thead>
@@ -127,9 +127,9 @@
 						    </tr>
 						  </thead>
 						  <tbody>
-						    <tr th:each="usuario : ${obtenerUsuariosDos}">
+						    <tr th:each="usuario : ${usuarios}">
 						      
-						      <td th:text="${usuario.Nombre}"></td>
+						      <td th:text="${usuario.nombre}"></td>
 						      <td th:text="${usuario.reputacion}"></td>
 						      <td th:text="${usuario.correo}"></td>
 						    

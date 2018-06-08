@@ -9,12 +9,21 @@
     <!-- Bootstrap core CSS -->
     <link th:href="@{webjars/bootstrap/4.1.0/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{webjars/datatables/1.10.16/css/dataTables.bootstrap4.css}" rel="stylesheet"/> 
+    
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.5/css/select.bootstrap4.min.css"/>
     
+    <script src="webjars/jquery/3.1.1/jquery.min.js"></script>
     
+    <script src="webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     
- 
-   
+    <script src="webjars/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="webjars/datatables/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    
+   <!--  <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script> -->
+    <script src="webjars/datatables.net-select/1.0.1/js/dataTables.select.min.js"></script>
+    
+ 	
+    
 	<title>Registrar proyecto
 	</title>
 </head>
@@ -41,8 +50,7 @@
   					</div>
 			      <h4 class="text-center">Roles</h4>
 			        <div class="row">
-			        	<div class="col-sm-6">
-			        		
+			        	<div class="col-sm-6">			        		
 			                <div class="form-check">
 						      <label class="form-check-label" for="cbLider">
 						        <input type="checkbox" class="form-check-input" id="cbLider" name="roles" value="lider" ></input>Lider de proyecto
@@ -90,7 +98,7 @@
 					<div id="liderChoice">
 						
 					</div>
-					<!-- <div id="liderList">
+					 <!-- <div id="liderList">
 						<table class="table table-bordered" id="tbLiderList" style="width:100%">
 						  <thead>
 						    <tr>
@@ -115,11 +123,12 @@
 						    
 						  </tbody>
 						</table>
-					</div> -->
+					</div>  -->
 					
-					 <a th:href="@{/usuarioController/obtenerUsuarios}" class="badge badge-info">Ver candidatos</a> <br></br>
+					 <!-- <a th:href="@{/usuarioController/registrarProyecto}" class="badge badge-info">Ver candidatos</a> <br></br> -->
+					 
 					<div id="liderList2">
-						<table class="table table-bordered" id="tbLiderList" style="width:100%">
+						<table class="table table-bordered" id="tbLiderList2" style="width:100%">
 						  <thead>
 						    <tr>
 						      <th scope="col">Nombre</th>
@@ -153,12 +162,7 @@
 		</div>
 	</div>
 	<!-- Jquery y Boostrap scripts -->
-	<script src="webjars/jquery/3.1.1/jquery.min.js"></script>
-    
-    <script src="webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <script src="webjars/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="webjars/datatables/1.10.16/js/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
+	
     <script type="text/javascript" src="js/regProjectScripts.js"></script>
 </body>
 </html>

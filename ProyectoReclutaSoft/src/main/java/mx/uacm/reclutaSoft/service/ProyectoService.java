@@ -13,4 +13,5 @@ public interface ProyectoService {
 	
 	//falta probar
 	public List<Proyecto> findPoryectos() throws AppExcepcion;
+	
 }

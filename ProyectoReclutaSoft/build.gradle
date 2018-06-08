@@ -44,6 +44,8 @@ dependencies {
    	compile("org.webjars:bootstrap:4.1.0")
     compile("org.webjars:jquery:3.1.1")
     compile("org.webjars:datatables:1.10.16")
+   compile group: 'org.webjars.bower', name: 'datatables.net-select', version: '1.0.1'
+   compile group: 'org.webjars', name: 'bootstrap-select', version: '1.4.2'
 }
 
 jacocoTestReport {

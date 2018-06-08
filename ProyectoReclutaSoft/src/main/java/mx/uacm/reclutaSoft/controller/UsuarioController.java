@@ -10,10 +10,12 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import mx.uacm.reclutaSoft.constantes.Error;
 import mx.uacm.reclutaSoft.domain.Habilidad;
@@ -35,7 +37,7 @@ public class UsuarioController {
 	@PostMapping("/registrarUsuario")
 	public String registrarUsuario(Map <String, Object> model, Usuario usuario,
 			                       @RequestParam("lenguaje") List<String>lenguajes,
-			                       @RequestParam("idioma") List<String>idiomas) {
+			                       @RequestParam("idioma") List<String>idiomas){
 		log.debug("Entrando al metodo UsuarioController.registrarUsuario");
 		
 		String nombre = usuario.getNombre();
@@ -143,48 +145,51 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/login")
-	public String login(Map <String, Object> model, Usuario usuario) {
+	public ModelAndView login(Map <String, Object> model, Usuario usuario) {
 		log.debug("Entrando al metodo UsuarioController.login");
 		String correo = usuario.getCorreo();
 		String contrasenia = usuario.getContrasenia();
 		
 		Usuario usuarioRegresado = new Usuario();
 		
+		
 		try {
 			usuarioRegresado = usuarioService.findByEmailAndPassword(correo, contrasenia);
 			
 			if (usuarioRegresado != null) {
 				httpSession.setAttribute("userLoggedIn", usuarioRegresado);
-				
 				model.put("exitoso", "Login exitoso");
 			} else {
 				model.put("error", "Error en el correo de usuario o en la contrasenia");
-				return "redirect:/error";
+				
+				
+				//return "redirect:/error";
 			}
 		} catch (Exception e) {
 			switch (e.getMessage()) {
 			case Error.MAL_CORREO:
 				model.put("error", Error.MAL_CORREO);
-				return "redirect:/error";
+				
+				break;
+//				return "redirect:/error";
 				
 			case Error.MAL_CONTRASENIA:
 				model.put("error", Error.MAL_CONTRASENIA);
-				return "redirect:/error";
+				break;
+//				return "redirect:/error";
 
 			default:
 				break;
 			}
 		}
-		
-		return "redirect:/perfil";
+		return new ModelAndView("redirect:/action", model);
 	}
 	
 	@GetMapping("/obtenerUsuarios")
 	public String obtenerUsuarios(Map <String, Object> model) {
-		log.debug("Entrando al metodo UsuarioController.obtenerUsuarios");
 		
+		log.debug("Entrando al metodo UsuarioController.obtenerUsuarios********************************************************");
 		List<Usuario> usuarios = new ArrayList<Usuario>();
-		
 		try {
 			usuarios = usuarioService.findUsuarios();
 			
@@ -194,15 +199,36 @@ public class UsuarioController {
 			return "redirect:/error";
 		}
 		
-		return "pruebasMarco";
+		
+		return "registraProyecto";
 	}
+	
+	@GetMapping("/obtenerUsuariosDos")
+	public String obtenerUsuariosDos(Model model) {
+		log.debug("Entrando al metodo UsuarioController.obtenerUsuarios2********************************************************");
+		
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		
+		try {
+			
+			
+			model.addAttribute("usuarios", usuarioService.findUsuarios());
+		} catch (AppExcepcion e) {
+			
+			return "usuarios";
+		}
+		
+		
+		return null;
+	}
+	
 	
 	@GetMapping("/obtenerUsuariosPorNombreYTipoDeHabilidad")
 	public String obtenerUsuariosPorNombreYTipoDeHabilidad(Map <String, Object> model, 
 														   @RequestParam("tipo") String tipo, 
 														   @RequestParam("nombre") String nombre) {
 		log.debug("Entrando al metodo UsuarioController.obtenerUsuariosPorNombreYTipoDeHabilidad");
-		
+			
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		
 		try {
@@ -227,7 +253,12 @@ public class UsuarioController {
 			}
 		}
 		
-		
 		return "pruebasMarco";
+	
 	}
+	
+	
+	
+	
+	
 }
