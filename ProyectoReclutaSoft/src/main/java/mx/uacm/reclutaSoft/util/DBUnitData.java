@@ -23,9 +23,9 @@ public class DBUnitData {
     private final static Logger log = LogManager.getLogger(DBUnitData.class);
 
     public static void extraerDatasetsUnoxUno(Connection conn) throws SQLException, DatabaseUnitException, FileNotFoundException, IOException  {
-        if(log.isDebugEnabled()) {
-            log.debug("Entrando a extraer...");
-        }
+//        if(log.isDebugEnabled()) {
+//            log.debug("Entrando a extraer...");
+//        }
         
         DatabaseMetaData md = conn.getMetaData();
         ResultSet rs = md.getTables(null, null, "%", null);
@@ -41,14 +41,14 @@ public class DBUnitData {
             + "datasets/" + rs.getString(3) + ".xml";
             FlatXmlDataSet.write(queryDataSet,
                         new FileOutputStream(rutaArchivo));
-            if(log.isDebugEnabled()) {
-                log.debug("Extrayendo " + rutaArchivo);
-            }
+//            if(log.isDebugEnabled()) {
+//                log.debug("Extrayendo " + rutaArchivo);
+//            }
         }
         
-        if(log.isDebugEnabled()){
-            log.debug("Terminando de extraer...");
-        }
+//        if(log.isDebugEnabled()){
+//            log.debug("Terminando de extraer...");
+//        }
         
     }
 }

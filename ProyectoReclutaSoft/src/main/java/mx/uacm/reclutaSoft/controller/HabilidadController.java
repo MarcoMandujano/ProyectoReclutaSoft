@@ -24,29 +24,29 @@ public class HabilidadController {
 	@Autowired
 	private HabilidadService habilidadService;
 	
-	@GetMapping("/obtenerHabilidades")
-	public String buscarHabilidadesPorNombreDeUsuario(Map <String, Object> model,
-			                                          @RequestParam("nombre") String nombre) {
-		log.debug("Entrando al metodo HabilidadController.buscarHabilidadesPorNombreDeUsuario");
-		
-		List<Habilidad> habilidades = new ArrayList<Habilidad>();
-		
-		try {
-			habilidades = habilidadService.findHabilidadByUserName(nombre);
-			
-		} catch (Exception e) {
-			switch (e.getMessage()) {
-			case Error.MAL_NOMBRE:
-				log.debug("Error MAL_NOMBRE");
-				model.put("error", Error.MAL_NOMBRE);
-				return "redirect:/error";
-				
-			default:
-				break;
-			}
-		}
-		
-		return "pruebasMarco";
-	}
+//	@GetMapping("/obtenerHabilidades")
+//	public String buscarHabilidadesPorNombreDeUsuario(Map <String, Object> model,
+//			                                          @RequestParam("nombre") String nombre) {
+//		log.debug("Entrando al metodo HabilidadController.buscarHabilidadesPorNombreDeUsuario");
+//		
+//		List<Habilidad> habilidades = new ArrayList<Habilidad>();
+//		
+//		try {
+//			habilidades = habilidadService.findHabilidadByUserName(nombre);
+//			
+//		} catch (Exception e) {
+//			switch (e.getMessage()) {
+//			case Error.MAL_NOMBRE:
+//				log.debug("Error MAL_NOMBRE");
+//				model.put("error", Error.MAL_NOMBRE);
+//				return "redirect:/error";
+//				
+//			default:
+//				break;
+//			}
+//		}
+//		
+//		return "pruebasMarco";
+//	}
 	
 }

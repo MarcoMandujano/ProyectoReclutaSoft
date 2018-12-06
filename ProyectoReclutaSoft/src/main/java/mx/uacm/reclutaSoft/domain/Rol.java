@@ -25,9 +25,13 @@ public class Rol {
 	
 	private String nombre;
 	
-	@OneToMany(mappedBy="rol", cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY)
-	private List<Usuario> usuarios = new ArrayList<Usuario>();
-
+//	@OneToMany(mappedBy="rol", cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY)
+//	private List<Usuario> usuarios = new ArrayList<Usuario>();
+	
+	@ManyToOne
+	@JoinColumn(name="usuario_id")
+	private Usuario usuario;
+	
 	public long getId() {
 		return id;
 	}
@@ -51,25 +55,33 @@ public class Rol {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-		for (Usuario usuario : usuarios) {
-			usuario.setRol(this);
-		}
+	
+	public Usuario getUsuario() {
+		return usuario;
 	}
 	
 	public void setUsuario(Usuario usuario) {
-		usuarios.add(usuario);
-		usuario.setRol(this);
+		this.usuario = usuario;
 	}
 	
-	public void removeUsuario(Usuario usuario) {
-		usuarios.remove(usuario);
-		usuario.setRol(null);
-	}
+//	public List<Usuario> getUsuarios() {
+//		return usuarios;
+//	}
+//
+//	public void setUsuarios(List<Usuario> usuarios) {
+//		this.usuarios = usuarios;
+//		for (Usuario usuario : usuarios) {
+//			usuario.setRol(this);
+//		}
+//	}
+//	
+//	public void setUsuario(Usuario usuario) {
+//		usuarios.add(usuario);
+//		usuario.setRol(this);
+//	}
+//	
+//	public void removeUsuario(Usuario usuario) {
+//		usuarios.remove(usuario);
+//		usuario.setRol(null);
+//	}
 }

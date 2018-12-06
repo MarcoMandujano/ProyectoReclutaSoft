@@ -37,52 +37,14 @@ public class UsuarioController {
 	@PostMapping("/registrarUsuario")
 	public String registrarUsuario(Map <String, Object> model, Usuario usuario,
 			                       @RequestParam("lenguaje") List<String>lenguajes,
-			                       @RequestParam("idioma") List<String>idiomas){
+			                       @RequestParam("idioma") List<String>idiomas) {
 		log.debug("Entrando al metodo UsuarioController.registrarUsuario");
-		
-		String nombre = usuario.getNombre();
-		String apellidoPaterno = usuario.getApellidoPaterno();
-		String apellidoMaterno = usuario.getApellidoMaterno();
-		String correo = usuario.getCorreo();
-		String contrasenia = usuario.getContrasenia();
-		String telefono = usuario.getTelefono();
-		
-		List<Habilidad> habilidadesTemp = new ArrayList<Habilidad>();
-		
-		for (String lenguaje : lenguajes) {
-			log.debug("lenguaje = " + lenguaje);
-			Habilidad habilidad = new Habilidad();
-			habilidad.setTipo("Lenguaje de programacion");
-			habilidad.setNombre(lenguaje);
-			habilidad.setPuntuacion(0);
-			habilidadesTemp.add(habilidad);
-		}
-		
-		for (String idioma : idiomas) {
-			log.debug("idioma = " + idioma);
-			Habilidad habilidad = new Habilidad();
-			habilidad.setTipo("Idioma");
-			habilidad.setNombre(idioma);
-			habilidad.setPuntuacion(0);
-			habilidadesTemp.add(habilidad);
-		}
-		usuario.setHabilidades(habilidadesTemp);
-		
-		List<Habilidad> habilidades = usuario.getHabilidades();
-		int edad = usuario.getEdad();
-		String web = usuario.getWeb();
-		String titulo = usuario.getTitulo();
-		
-//		log.debug(titulo);
+	
 		
 		Usuario usuarioRegresado = new Usuario();
 		
 		try {
-			usuarioRegresado = usuarioService.alta(nombre, apellidoPaterno,
-					                               apellidoMaterno, correo, 
-					                               contrasenia, telefono,
-					                               habilidades, edad, web,
-					                               titulo);
+			usuarioRegresado = usuarioService.alta(usuario, lenguajes, idiomas);
 		} catch (AppExcepcion e) {
 //			String excepcion = e.getMessage();
 			switch (e.getMessage()) {
@@ -144,6 +106,62 @@ public class UsuarioController {
 		return "redirect:/perfil";
 	}
 	
+//	@PostMapping("/login")
+//	public ModelAndView login(Map <String, Object> model, Usuario usuario) {
+//		log.debug("Entrando al metodo UsuarioController.login");
+//		String correo = usuario.getCorreo();
+//		String contrasenia = usuario.getContrasenia();
+//		
+//		Usuario usuarioRegresado = new Usuario();
+//		
+//		List<Usuario> usuarios = new ArrayList<Usuario>();
+//		
+//		try {
+//			usuarioRegresado = usuarioService.findByEmailAndPassword(correo, contrasenia);
+//			
+////			log.debug(usuarioRegresado.getCorreo());
+//			usuarios = usuarioService.findUsuarios();
+//			
+//			if (usuarioRegresado != null) {
+//				log.debug("entro a usuario regresado");
+//				httpSession.setAttribute("userLoggedIn", usuarioRegresado);
+//				
+//				model.put("exitoso", "Login exitoso");
+//				model.put("usuarios", usuarios);
+////				model.setViewName("redirect:/action");
+//				
+//				
+//			} else {
+//				model.put("error", "Error en el correo de usuario o en la contrasenia");
+//				return new ModelAndView("redirect:/", model);
+//				
+//				//return "redirect:/error";
+//			}
+//		} catch (Exception e) {
+//			switch (e.getMessage()) {
+//			case Error.MAL_CORREO:
+//				model.put("error", Error.MAL_CORREO);
+//				return new ModelAndView("redirect:/", model);
+////				break;
+////				return "redirect:/error";
+//				
+//			case Error.MAL_CONTRASENIA:
+//				
+//				model.put("error", Error.MAL_CONTRASENIA);
+//				return new ModelAndView("redirect:/", model);
+////				break;
+////				return "redirect:/error";
+//
+//			default:
+//				break;
+//			}
+//		}
+//		return new ModelAndView("action", model);
+//		//return new ModelAndView("redirect:/action", model);
+//		//return model;
+//	}
+	
+
 	@PostMapping("/login")
 	public ModelAndView login(Map <String, Object> model, Usuario usuario) {
 		log.debug("Entrando al metodo UsuarioController.login");
@@ -152,110 +170,136 @@ public class UsuarioController {
 		
 		Usuario usuarioRegresado = new Usuario();
 		
+		List<Usuario> usuarios = new ArrayList<Usuario>();
 		
 		try {
 			usuarioRegresado = usuarioService.findByEmailAndPassword(correo, contrasenia);
 			
+			usuarios = usuarioService.findUsuarios();
+			
 			if (usuarioRegresado != null) {
+				log.debug("entro a usuario regresado");
+				//log.debug(usuarioRegresado.getHabilidades().get(0));
 				httpSession.setAttribute("userLoggedIn", usuarioRegresado);
+				model.put("nombreUsuario", usuarioRegresado.getNombre());
+				model.put("correoUsuario", usuarioRegresado.getCorreo());
+				model.put("apellidoPaternoUsuario",usuarioRegresado.getApellidoPaterno());
+				model.put("apellidoMaternoUsuario",usuarioRegresado.getApellidoMaterno());
+				model.put("tituloUsuario",usuarioRegresado.getTitulo());
+				model.put("webSiteUsuario",usuarioRegresado.getWeb());
+				model.put("reputacionUsuario",usuarioRegresado.getReputacion());
+				model.put("habilidadesUsuario",usuarioRegresado.getHabilidades());
 				model.put("exitoso", "Login exitoso");
+				model.put("usuarios", usuarios);
+				
+				
 			} else {
 				model.put("error", "Error en el correo de usuario o en la contrasenia");
-				
-				
-				//return "redirect:/error";
+				return new ModelAndView("redirect:/", model);
 			}
 		} catch (Exception e) {
 			switch (e.getMessage()) {
 			case Error.MAL_CORREO:
 				model.put("error", Error.MAL_CORREO);
-				
-				break;
-//				return "redirect:/error";
+				return new ModelAndView("redirect:/", model);
 				
 			case Error.MAL_CONTRASENIA:
+				
 				model.put("error", Error.MAL_CONTRASENIA);
-				break;
-//				return "redirect:/error";
+				return new ModelAndView("redirect:/", model);
 
 			default:
 				break;
 			}
 		}
-		return new ModelAndView("redirect:/action", model);
-	}
-	
-	@GetMapping("/obtenerUsuarios")
-	public String obtenerUsuarios(Map <String, Object> model) {
-		
-		log.debug("Entrando al metodo UsuarioController.obtenerUsuarios********************************************************");
-		List<Usuario> usuarios = new ArrayList<Usuario>();
-		try {
-			usuarios = usuarioService.findUsuarios();
-			
-			model.put("usuarios", usuarios);
-		} catch (AppExcepcion e) {
-			model.put("error", e.getMessage());
-			return "redirect:/error";
-		}
-		
-		
-		return "registraProyecto";
-	}
-	
-	@GetMapping("/obtenerUsuariosDos")
-	public String obtenerUsuariosDos(Model model) {
-		log.debug("Entrando al metodo UsuarioController.obtenerUsuarios2********************************************************");
-		
-		List<Usuario> usuarios = new ArrayList<Usuario>();
-		
-		try {
-			
-			
-			model.addAttribute("usuarios", usuarioService.findUsuarios());
-		} catch (AppExcepcion e) {
-			
-			return "usuarios";
-		}
-		
-		
-		return null;
+		return new ModelAndView("action", model);
 	}
 	
 	
-	@GetMapping("/obtenerUsuariosPorNombreYTipoDeHabilidad")
-	public String obtenerUsuariosPorNombreYTipoDeHabilidad(Map <String, Object> model, 
-														   @RequestParam("tipo") String tipo, 
-														   @RequestParam("nombre") String nombre) {
-		log.debug("Entrando al metodo UsuarioController.obtenerUsuariosPorNombreYTipoDeHabilidad");
-			
-		List<Usuario> usuarios = new ArrayList<Usuario>();
-		
-		try {
-			usuarios = usuarioService.findUsersByHabilidadTipoAndNombre(tipo, nombre);
-			
-			model.put("usuarios", usuarios);
-		} catch (AppExcepcion e) {
-			
-			switch (e.getMessage()) {
-			case Error.MAL_NOM_HABILIDAD:
-				log.debug("Error MAL_NOM_HABILIDAD");
-				model.put("error", Error.MAL_NOM_HABILIDAD);
-				return "redirect:/error";
-				
-			case Error.MAL_TP_HABILIDAD:
-				log.debug("Error MAL_TP_HABILIDAD");
-				model.put("error", Error.MAL_TP_HABILIDAD);
-				return "redirect:/error";
-				
-			default:
-				break;
-			}
-		}
-		
-		return "pruebasMarco";
 	
-	}
+	
+	
+	
+	
+	
+	
+	
+//	@GetMapping("/obtenerUsuarios")
+//	public ModelAndView obtenerUsuarios(Map <String, Object> model) {
+//		
+//		log.debug("Entrando al metodo UsuarioController.obtenerUsuarios********************************************************");
+//		List<Usuario> usuarios = new ArrayList<Usuario>();
+//		try {
+//			usuarios = usuarioService.findUsuarios();
+//			
+//			
+////			for (Usuario usuario : usuarios) {
+////				log.debug(usuario.getCorreo());
+////			}
+//			
+//			model.put("usuarios", usuarios);
+//		} catch (AppExcepcion e) {
+//			model.put("error", e.getMessage());
+////			return "redirect:/error";
+//		}
+//		
+//		
+//		return new ModelAndView("redirect:/action", model);
+//	}
+//	
+//	@GetMapping("/obtenerUsuariosDos")
+//	public String obtenerUsuariosDos(Model model) {
+//		log.debug("Entrando al metodo UsuarioController.obtenerUsuarios2********************************************************");
+//		
+//		List<Usuario> usuarios = new ArrayList<Usuario>();
+//		
+//		try {
+//			
+//			
+//			model.addAttribute("usuarios", usuarioService.findUsuarios());
+//		} catch (AppExcepcion e) {
+//			
+//			return "usuarios";
+//		}
+//		
+//		
+//		return null;
+//	}
+	
+	
+//	@GetMapping("/obtenerUsuariosPorNombreYTipoDeHabilidad")
+//	public String obtenerUsuariosPorNombreYTipoDeHabilidad(Map <String, Object> model, 
+//														   @RequestParam("tipo") String tipo, 
+//														   @RequestParam("nombre") String nombre) {
+//		log.debug("Entrando al metodo UsuarioController.obtenerUsuariosPorNombreYTipoDeHabilidad");
+//			
+//		List<Usuario> usuarios = new ArrayList<Usuario>();
+//		
+//		try {
+//			usuarios = usuarioService.findUsersByHabilidadTipoAndNombre(tipo, nombre);
+//			
+//			model.put("usuarios", usuarios);
+//		} catch (AppExcepcion e) {
+//			
+//			switch (e.getMessage()) {
+//			case Error.MAL_NOM_HABILIDAD:
+//				log.debug("Error MAL_NOM_HABILIDAD");
+//				model.put("error", Error.MAL_NOM_HABILIDAD);
+//				return "redirect:/error";
+//				
+//			case Error.MAL_TP_HABILIDAD:
+//				log.debug("Error MAL_TP_HABILIDAD");
+//				model.put("error", Error.MAL_TP_HABILIDAD);
+//				return "redirect:/error";
+//				
+//			default:
+//				break;
+//			}
+//		}
+//		
+//		return "pruebasMarco";
+//	
+//	}
 	
 	
 	

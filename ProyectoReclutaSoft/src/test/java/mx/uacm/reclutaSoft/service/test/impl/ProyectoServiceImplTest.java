@@ -1,6 +1,12 @@
 package mx.uacm.reclutaSoft.service.test.impl;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -30,16 +36,35 @@ public class ProyectoServiceImplTest {
 	
 //	private ProyectoService proyectoService = new ProyectoServiceImpl();
 		
+//	@Test
+//	public void testfindPoryectos() throws AppExcepcion {
+//		log.debug("Entrando a testfindPoryectos");
+//		
+//		List<Proyecto> proyectos = new ArrayList<Proyecto>();
+//		
+//		proyectos = proyectoService.findPoryectos();
+//		
+//		int tamanio = proyectos.size();
+//		Assert.assertThat(tamanio, is(equalTo(tamanio)));
+//	}
+	
+	
 	@Test
 	public void testNombreMin() {
 		log.debug("Entrando a testNombreMin");
 		
+		Map<Object, Object> JSON = new HashMap<Object, Object>();
+		
 		String nombre = "";
 		String descripcion = "";
-		ArrayList<Rol> roles = null;
+		List<Rol> roles = new ArrayList<Rol>();
+		
+		JSON.put("nombre", nombre);
+		JSON.put("descripcion", descripcion);
+		JSON.put("roles", roles);
 				
 		try {
-			proyectoService.alta(nombre, descripcion, roles);
+			proyectoService.alta(JSON);
 			
 		} catch (AppExcepcion e) {
 			Assert.assertEquals(Error.MAL_NOM_PROYECTO, e.getMessage());
@@ -50,6 +75,8 @@ public class ProyectoServiceImplTest {
 	public void testNombreMax() {
 		log.debug("Entrando a testNombreMax");
 		
+		Map<Object, Object> JSON = new HashMap<Object, Object>();
+		
 		String nombre = "a";
 		
 		for (int i = 0; i < Regla.MAX_NOM_PROYECTO; i++) {
@@ -57,10 +84,14 @@ public class ProyectoServiceImplTest {
 		}
 		
 		String descripcion = "";
-		ArrayList<Rol> roles = null;
+		List<Rol> roles = new ArrayList<Rol>();
+		
+		JSON.put("nombre", nombre);
+		JSON.put("descripcion", descripcion);
+		JSON.put("roles", roles);
 				
 		try {
-			proyectoService.alta(nombre, descripcion, roles);
+			proyectoService.alta(JSON);
 			
 		} catch (AppExcepcion e) {
 			Assert.assertEquals(Error.MAL_NOM_PROYECTO, e.getMessage());
@@ -70,13 +101,17 @@ public class ProyectoServiceImplTest {
 	@Test
 	public void testDescripcionMin() {
 		log.debug("Entrando a testDescripcionMin");
-		
+		Map<Object, Object> JSON = new HashMap<Object, Object>();
+
 		String nombre = "Proyecto Alcancia Digital";
 		String descripcion = "";
-		ArrayList<Rol> roles = null;
-				
+		List<Rol> roles = new ArrayList<Rol>();
+		
+		JSON.put("nombre", nombre);
+		JSON.put("descripcion", descripcion);
+		JSON.put("roles", roles);
 		try {
-			proyectoService.alta(nombre, descripcion, roles);
+			proyectoService.alta(JSON);
 			
 		} catch (AppExcepcion e) {
 			Assert.assertEquals(Error.MAL_DES_PROYECTO, e.getMessage());
@@ -86,6 +121,7 @@ public class ProyectoServiceImplTest {
 	@Test
 	public void testDescripcionMax() {
 		log.debug("Entrando a testDescripcionMax");
+		Map<Object, Object> JSON = new HashMap<Object, Object>();
 		
 		String nombre = "Proyecto Alcancia Digital";
 		String descripcion = "a";
@@ -94,10 +130,14 @@ public class ProyectoServiceImplTest {
 			descripcion += "a";
 		}
 		
-		ArrayList<Rol> roles = null;
+		List<Rol> roles = new ArrayList<Rol>();
+		
+		JSON.put("nombre", nombre);
+		JSON.put("descripcion", descripcion);
+		JSON.put("roles", roles);
 				
 		try {
-			proyectoService.alta(nombre, descripcion, roles);
+			proyectoService.alta(JSON);
 			
 		} catch (AppExcepcion e) {
 			Assert.assertEquals(Error.MAL_DES_PROYECTO, e.getMessage());
@@ -107,13 +147,18 @@ public class ProyectoServiceImplTest {
 	@Test
 	public void testRoles() {
 		log.debug("Entrando a testRoles");
+		Map<Object, Object> JSON = new HashMap<Object, Object>();
 		
 		String nombre = "Proyecto Alcancia Digital";
 		String descripcion = "Proyecto #1 de la historia";		
-		ArrayList<Rol> roles = new ArrayList<Rol>();
+		List<Rol> roles = new ArrayList<Rol>();
+		
+		JSON.put("nombre", nombre);
+		JSON.put("descripcion", descripcion);
+		JSON.put("roles", roles);
 				
 		try {
-			proyectoService.alta(nombre, descripcion, roles);
+			proyectoService.alta(JSON);
 			
 		} catch (AppExcepcion e) {
 			Assert.assertEquals(Error.MAL_ROLES, e.getMessage());
@@ -123,17 +168,30 @@ public class ProyectoServiceImplTest {
 	@Test
 	public void testAlta() throws AppExcepcion {
 		log.debug("Entrando a testAlta");
+		Map<Object, Object> JSON = new HashMap<Object, Object>();
 		
 		String nombre = "Proyecto Alcancia Digital";
 		String descripcion = "Proyecto #1 de la historia";
 		
-		ArrayList<Rol> roles = new ArrayList<Rol>();
-		Rol rol = new Rol();
-		rol.setNombre("Programador");
+		List<String> roles = new ArrayList<String>();
+//		Rol rol = new Rol();
+//		rol.setNombre("Programador");
+//		
+//		roles.add(rol);
 		
-		roles.add(rol);
-				
-		Proyecto proyecto =	proyectoService.alta(nombre, descripcion, roles);
+		roles.add("lider");
+		roles.add("programador");
+		roles.add("deseniador");
+		roles.add("analista");
+		roles.add("tester");
+		
+		
+		JSON.put("nombre", nombre);
+		JSON.put("descripcion", descripcion);
+		JSON.put("roles", roles);
+		
+		
+		Proyecto proyecto =	proyectoService.alta(JSON);
 		
 		Assert.assertNotNull(proyecto);
 	}

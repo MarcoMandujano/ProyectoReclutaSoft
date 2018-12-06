@@ -10,8 +10,11 @@ import mx.uacm.reclutaSoft.excepcion.AppExcepcion;
 
 public interface UsuarioService {
 	
-	public Usuario alta(String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contrasenia, 
-			String telefono, List<Habilidad> habilidades, int edad, String web, String titulo) throws AppExcepcion;
+//	public Usuario alta(String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contrasenia, 
+//			String telefono, List<Habilidad> habilidades, int edad, String web, String titulo) throws AppExcepcion;
+	
+	public Usuario alta(Usuario usuario, List<String> lenguajes, List<String> idiomas) throws AppExcepcion;
+	
 	
 	public Usuario setReputacion(Usuario usuario, int reputacion) throws AppExcepcion;
 		
@@ -26,6 +29,6 @@ public interface UsuarioService {
 	public List<Usuario> findUsuarios() throws AppExcepcion;
 	
 	//falta hacer test
-	public List<Usuario> findUsersByHabilidadTipoAndNombre(String tipo, String nombreHabilidad) throws AppExcepcion;
+//	public List<Usuario> findUsersByHabilidadTipoAndNombre(String tipo, String nombreHabilidad) throws AppExcepcion;
 	
 }

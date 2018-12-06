@@ -2,7 +2,7 @@ apply plugin: 'java-library'
 apply plugin: 'eclipse'
 apply plugin: "jacoco"
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
 version = '1.0'
 jar {
    manifest {
@@ -48,11 +48,11 @@ dependencies {
    compile group: 'org.webjars', name: 'bootstrap-select', version: '1.4.2'
 }
 
-jacocoTestReport {
+/*jacocoTestReport {
     reports {
         xml.enabled false
         csv.enabled false
         html.destination file("${buildDir}/jacocoHtml")
     }
 }
-
+*/

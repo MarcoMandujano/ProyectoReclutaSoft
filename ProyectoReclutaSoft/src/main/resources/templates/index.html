@@ -42,7 +42,7 @@
 		              <hr></hr>
 		              <div class="input-group input-group-newsletter">
 		                
-		                <input type="password" class="form-control" placeholder="Enter password..." aria-label="Enter email..." aria-describedby="basic-addon" name="contrasenia"></input>
+		                <input type="password" class="form-control" placeholder="Enter password..." aria-label="Enter password..." aria-describedby="basic-addon" name="contrasenia"></input>
 		                
 		
 		              </div>
@@ -101,7 +101,7 @@
             
             	<div class="form-group">
 				    <label for="inputNombreUsuario">Nombre</label>
-				    <input type="text" class="form-control" id="inputNombreUsuario" aria-describedby="nombreHelp"  name="nombre" placeholder="Ingrese nombre..."/>
+				    <input type="text" class="form-control" id="inputNombreUsuario" aria-describedby="nombreHelp"  name="nombre" placeholder="Ingrese nombre..." required="true" pattern="[A-Za-z//ñ// ]{3,50}"/>
 				    <small id="nombreHelp" class="form-text text-muted"></small>
   				</div>            	
             </div>
@@ -110,7 +110,7 @@
             <div class="col-sm-10">        
             	<div class="form-group">
 				    <label for="inputApellidoPaterno">Apellido paterno</label>
-				    <input type="text" class="form-control" id="inputApellidoPaterno" aria-describedby="apellidoPaternoHelp"  name="apellidoPaterno" placeholder="Ingrese apellido paterno..."/>
+				    <input type="text" class="form-control" id="inputApellidoPaterno" aria-describedby="apellidoPaternoHelp"  name="apellidoPaterno" placeholder="Ingrese apellido paterno..." required="true" pattern="[A-Za-z//ñ// ]{3,50}"/>
 				    <small id="apellidoPaternoHelp" class="form-text text-muted"></small>
   				</div>            	
             </div>
@@ -119,7 +119,7 @@
             <div class="col-sm-10">        
             	<div class="form-group">
 				    <label for="inputApellidoMaterno">Apellido materno</label>
-				    <input type="text" class="form-control" id="inputApellidoMaterno" aria-describedby="apellidoMaternoHelp"  name="apellidoMaterno" placeholder="Ingrese apellido materno..."/>
+				    <input type="text" class="form-control" id="inputApellidoMaterno" aria-describedby="apellidoMaternoHelp"  name="apellidoMaterno" placeholder="Ingrese apellido materno..." required="true" pattern="[A-Za-z//ñ// ]{3,50}"/>
 				    <small id="apellidoMaternoHelp" class="form-text text-muted"></small>
   				</div>            	
             </div>
@@ -128,7 +128,7 @@
             <div class="col-sm-10">        
             	<div class="form-group">
 				    <label for="correoUsuario">Correo</label>
-				    <input type="email" class="form-control" id="correoUsuario" aria-describedby="correoUsuarioHelp"  name="correo" placeholder="Ingrese correo electrónico..."/>
+				    <input type="email" class="form-control" id="correoUsuario" aria-describedby="correoUsuarioHelp"  name="correo" placeholder="Ingrese correo electrónico..." required="true" />
 				    <small id="correoUsuarioHelp" class="form-text text-muted"></small>
   				</div>            	
             </div>
@@ -137,7 +137,7 @@
             <div class="col-sm-10">        
             	<div class="form-group">
 				    <label for="contraseniaUsuario">Contraseña</label>
-				    <input type="password" class="form-control" id="contraseniaUsuario" aria-describedby="contraseniaUsuarioHelp"  name="contrasenia" placeholder="Ingrese contraseña..."/>
+				    <input type="password" class="form-control" id="contraseniaUsuario" aria-describedby="contraseniaUsuarioHelp"  name="contrasenia" placeholder="Ingrese contraseña..." required="true" pattern="[A-Za-z//ñ//]{3,50}"/>
 				    <small id="contraseniaUsuarioHelp" class="form-text text-muted"></small>
   				</div>            	
             </div>
@@ -146,8 +146,8 @@
             <div class="col-sm-10">        
             	<div class="form-group">
 				    <label for="telefonoUsuario">Teléfono</label>
-				    <input type="text" class="form-control" id="telefonoUsuario" aria-describedby="telefonoUsuarioHelp"  name="telefono" placeholder="Ingrese telefono..."/>
-				    <small id="telefonoUsuarioHelp" class="form-text text-muted"></small>
+				    <input type="text" class="form-control" id="telefonoUsuario" aria-describedby="telefonoUsuarioHelp"  name="telefono" placeholder="Ingrese telefono..." required="true" pattern="[0-9]{10}"/>
+				    <small id="telefonoUsuarioHelp" class="form-text text-muted">El número teléfonico debe ser de 10 dígitos.</small>
   				</div>            	
             </div>
           </div>
@@ -155,7 +155,7 @@
             <div class="col-sm-10">        
             	<div class="form-group">
 				    <label for="edadUsuario">Edad</label>
-				    <input type="Number" class="form-control" id="edadUsuario" aria-describedby="edadUsuarioHelp"  name="edad" placeholder="Ingrese edad.."/>
+				    <input type="Number" class="form-control" id="edadUsuario" aria-describedby="edadUsuarioHelp"  name="edad" placeholder="Ingrese edad.." required="true" min="1" max="180"/>
 				    <small id="edadUsuarioHelp" class="form-text text-muted"></small>
   				</div>            	
             </div>
@@ -164,18 +164,30 @@
             <div class="col-sm-10">        
             	<div class="form-group">
 				    <label for="webUsuario">Web</label>
-				    <input type="text" class="form-control" id="webUsuario" aria-describedby="webUsuarioHelp"  name="web" placeholder="Ingrese url de sitio web..."/>
-				    <small id="webUsuarioHelp" class="form-text text-muted"></small>
+				    <input type="text" class="form-control" id="webUsuario" aria-describedby="webUsuarioHelp"  name="web" placeholder="Ingrese url de sitio web..." required="true"/>
+				    <small id="webUsuarioHelp" class="form-text text-muted">Ejemplo: https://www.linkedin.com/nombre</small>
   				</div>            	
             </div>
           </div>
           <div class="row">         
             <div class="col-sm-10">        
-            	<div class="form-group">
+            	<!-- <div class="form-group">
 				    <label for="tituloUsuario">Titulo</label>
-				    <input type="text" class="form-control" id="tituloUsuario" aria-describedby="tituloUsuarioHelp"  name="titulo" placeholder="Ingrese titulo..."/>
+				    <input type="text" class="form-control" id="tituloUsuario" aria-describedby="tituloUsuarioHelp"  name="titulo" placeholder="Ingrese titulo..." required="true"/>
 				    <small id="tituloUsuarioHelp" class="form-text text-muted"></small>
-  				</div>            	
+  				</div> -->
+  				<div class="form-group">
+				    <label for="exampleSelect1" >Titulo </label>
+				    <select class="form-control" id="titulo" required="true" name="titulo" >
+				      <option value="Estudiante">Estudiante</option>
+				      <option value="Licenciatura">Licenciatura</option>
+				      <option value="Ingeniería">Ingeniería</option>
+				      <option value="Posgrado">Posgrado</option>
+				      <option value="Maestría">Maestría</option>
+				      <option value="Doctorado">Doctorado</option>
+				      
+				    </select>
+  </div>            	
             </div>
           </div>
           <!-- <div class="row">         
@@ -287,6 +299,54 @@
     </div>
   </div>
   
+<!--   <div class="modal" tabindex="-1" role="dialog" id="mdAviso">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Información</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div th:switch="${exito}"> 
+		  <p th:case="'error'" th:text="${error}"></p>
+		  <p th:case="'exito'" >Usuario Registrado exitosamente</p>
+		  
+		</div>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Modal -->
+<div class="modal fade" id="mdAviso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Aviso!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div th:switch="${exito}"> 
+		  <p th:case="'error'">Error al registrar intentelo mas tarde</p>
+		  <p th:case="'exito'">Usuario Registrado exitosamente</p>
+		  <p id="mensaje"></p>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- Bootstrap core JavaScript -->
      <!-- Jquery y Boostrap scripts -->
@@ -300,6 +360,22 @@
     
     <script type="text/javascript" src="js/coming-soon.js"></script>
     
+    <script th:inline="javascript">
+		/*<![CDATA[*/
+
+    	var message = /*[[${exito}]]*/ 'default';
+    	console.log(message);
+    	if(message != null){
+    		
+    		$('#mdAviso').modal('show');
+    		mensajePartes= mensaje.split("=");
+    		
+    		$("#mensaje").html(mensajePartes[1]);
+    	}
+    	messaje=null;
+
+		/*]]>*/
+	</script>
   </body>
 
 </html>

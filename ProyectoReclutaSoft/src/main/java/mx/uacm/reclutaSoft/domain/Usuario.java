@@ -21,9 +21,12 @@ public class Usuario {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	@ManyToOne
-	@JoinColumn(name="rol_id")
-	private Rol rol;
+//	@ManyToOne
+//	@JoinColumn(name="rol_id")
+//	private Rol rol;
+	
+	@OneToMany(mappedBy="usuario", cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY)
+	private List<Rol> roles = new ArrayList<Rol>();
 	
 	private String nombre;
 	
@@ -60,13 +63,34 @@ public class Usuario {
 		this.id = id;
 	}
 	
-	public Rol getRol() {
-		return rol;
+	public List<Rol> getRoles() {
+		return roles;
 	}
-
+	
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
+		for (Rol rol : roles) {
+			rol.setUsuario(this);
+		}
+	}
+	
 	public void setRol(Rol rol) {
-		this.rol = rol;
+		roles.add(rol);
+		rol.setUsuario(this);
 	}
+	
+	public void removeRol(Rol rol) {
+		roles.remove(rol);
+		rol.setUsuario(null);
+	}
+	
+//	public Rol getRol() {
+//		return rol;
+//	}
+//
+//	public void setRol(Rol rol) {
+//		this.rol = rol;
+//	}
 
 	public String getNombre() {
 		return nombre;
